@@ -1,5 +1,6 @@
 #include <iostream>
 #include "vector.h"
+using namespace std;
 template<typename type>
 void vector<type>::push_back(const type& num) {
 	type* x = m_ptr;
@@ -34,7 +35,7 @@ type vector<type>::at(int num) {
 	return m_ptr[num];
 }
 template <typename type>
-void print() {
+void vector<type>::print() {
 	cout << std::endl;
 	for (int i = 0; i < m_size; i++)
 	{
@@ -47,11 +48,11 @@ size_t vector<type>::capacity() {
 	return m_capacity;
 }
 template<typename type>
-void vector<type>::reserve(int num)
-{
-	num = num > 600 ? 300 : num;
-	m_capacity = num;
-}
+//void vector<type>::reserve(int num)
+//{
+//	num = num > 600 ? 300 : num;
+//	m_capacity = num;
+//}that will be in new versions
 template<typename type>
 void vector<type>::insert(type var,int num) {
 	type* x = m_ptr;
@@ -71,4 +72,15 @@ void vector<type>::insert(type var,int num) {
 	}
 	delete[]  x;
 	x = nullptr;
+}
+int main()
+{
+	vector <int> a;
+	a.print();
+	a.push_back(1);
+	a.print();
+	a.push_back(2);
+	a.print();
+	a.insert(5, 2);
+	a.print();
 }

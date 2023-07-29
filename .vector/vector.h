@@ -1,5 +1,6 @@
-template<typename Type>
+template<typename Type = int>
 class vector {
+protected:
 	Type* m_ptr;
 	size_t m_size = 2;
 	size_t m_capacity = 4;
@@ -17,6 +18,6 @@ public:
 	size_t capacity();
 	void insert(Type var,int num);
 	void reserve(int num);
-	void erase(int num);
+	//void erase(int num);
 	void print();
 };
