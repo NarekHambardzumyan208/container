@@ -1,0 +1,15 @@
+﻿  Single Linked Lists.cpp
+C:\Users\User\OneDrive\Рабочий стол\training\chessmate\Single Linked Lists\Single Linked Lists.cpp(35,1): error C2955: 'Node': use of class template requires template argument list
+C:\Users\User\OneDrive\Рабочий стол\training\chessmate\Single Linked Lists\Single Linked Lists.cpp(7,1): message : see declaration of 'Node'
+C:\Users\User\OneDrive\Рабочий стол\training\chessmate\Single Linked Lists\Single Linked Lists.cpp(34,1): message : while compiling class template member function 'void list<int>::print(void)'
+C:\Users\User\OneDrive\Рабочий стол\training\chessmate\Single Linked Lists\Single Linked Lists.cpp(50,16): message : see reference to function template instantiation 'void list<int>::print(void)' being compiled
+C:\Users\User\OneDrive\Рабочий стол\training\chessmate\Single Linked Lists\Single Linked Lists.cpp(45,15): message : see reference to class template instantiation 'list<int>' being compiled
+C:\Users\User\OneDrive\Рабочий стол\training\chessmate\Single Linked Lists\Single Linked Lists.cpp(35,24): error C2440: 'initializing': cannot convert from 'Node<T>' to 'Node *'
+          with
+          [
+              T=int
+          ]
+C:\Users\User\OneDrive\Рабочий стол\training\chessmate\Single Linked Lists\Single Linked Lists.cpp(35,24): message : No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+C:\Users\User\OneDrive\Рабочий стол\training\chessmate\Single Linked Lists\Single Linked Lists.cpp(38,39): warning C4552: '<<': result of expression not used
+C:\Users\User\OneDrive\Рабочий стол\training\chessmate\Single Linked Lists\Single Linked Lists.cpp(39,28): error C2440: '=': cannot convert from 'Node<T> *' to 'Node *'
+C:\Users\User\OneDrive\Рабочий стол\training\chessmate\Single Linked Lists\Single Linked Lists.cpp(39,28): message : Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or parenthesized function-style cast
