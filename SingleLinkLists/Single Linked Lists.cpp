@@ -34,6 +34,26 @@ public:
             temp = temp->next;
         }
     }
+    bool empty()
+    {
+        if (head == nullptr)
+        {
+            return 1;
+        }
+        else {
+            return 0;
+        }
+    }
+    void clear()
+    {
+        Node<T>* temp = head;
+        while (temp->next != nullptr)
+        {
+            Node<T>* nextt = temp->next;
+            delete temp;
+            temp = nextt;
+        }
+    }
 };
 
 int main() {
@@ -42,6 +62,8 @@ int main() {
     first.add(3);
     first.add(4);
     first.add(7);
+    first.print();
+    first.clear();
     first.print();
 
     return 0;
