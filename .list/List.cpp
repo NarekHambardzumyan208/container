@@ -12,21 +12,18 @@ template<class T = int>
 class list {
 protected:
 	Node<T>* head = nullptr;
+    Node<T>* tail = nullptr;
 public:
     void add(T m_data) {
         Node<T>* newNode = new Node<T>(m_data);
         if (head == nullptr) {
             head = newNode;
+            tail = newNode;
         }
         else {
-            Node<T>* temp = head;
-            Node<T>* Previous;
-            while (temp->next != nullptr) {
-                Previous = temp;
-                temp = temp->next;
-            }
-            temp->next = newNode;
-            newNode->previous = Previous;
+            tail->next = newNode;
+            newNode->previous = tail;
+            tail = newNode;
         }
     }
 

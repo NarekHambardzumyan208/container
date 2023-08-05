@@ -9,6 +9,18 @@ public:
   {
         this->add(m_data);
   }
+  void pop()
+  {
+	  Node<T> temp = this->head;
+	  while (temp != nullptr)
+	  {
+		  if (temp->next == nullptr)
+		  {
+			  delete temp;
+			  temp = nullptr;
+		  }
+	  }
+  }
  bool empty()
  {
        return this->empty_list();

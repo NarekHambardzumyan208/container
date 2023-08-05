@@ -1,5 +1,5 @@
 ﻿#include <iostream>
-
+#include <queue>
 template<typename T = int>
 class Node {
 public:
@@ -26,7 +26,20 @@ public:
             temp->next = newNode;
         }
     }
+    void reverse() {
+        Node<T>* prev = nullptr;
+        Node<T>* current = head;
+        Node<T>* nextNode = nullptr;
 
+        while (current != nullptr) {
+            nextNode = current->next;
+            current->next = prev;
+            prev = current;
+            current = nextNode;
+        }
+
+        head = prev;
+    }
     void print() {
         Node<T>* temp = head;
         while (temp != nullptr) {
@@ -44,27 +57,60 @@ public:
             return 0;
         }
     }
-    void clear()
+  void clear()
+{
+    Node<T>* temp = head;
+    while (temp != nullptr)
     {
-        Node<T>* temp = head;
-        while (temp->next != nullptr)
-        {
-            Node<T>* nextt = temp->next;
-            delete temp;
-            temp = nextt;
-        }
+        Node<T>* nextt = temp->next;
+        delete temp;
+        temp = nextt;
     }
+    head = nullptr; 
+  }
+  bool has_cycle() {
+      Node<T>* slow = head;
+      Node<T>* fast = head;
+      while (slow != nullptr && fast != nullptr && fast->next != nullptr)
+      {
+          slow = slow->next;
+          fast = fast->next->next;
+          if (slow == fast)
+          {
+              return 1;
+          }
+      }
+      return 0;
+  }
+  T nrd_elem(size_t n) {
+      reverse();
+      Node <T>* temp = head;
+      for (int i = 0; i <= n; i++)
+      {
+          if (i == n && temp != nullptr)
+          {
+              return temp->m_value;
+          }
+          temp = temp->next;
+      }
+      return 0;
+  }
 };
-
 int main() {
     list<int> first;
     first.add(1);
     first.add(3);
     first.add(4);
     first.add(7);
-    first.print();
-    first.clear();
-    first.print();
+    first.add(6);
+    first.add(8);
+    //first.print();
+    std::cout << first.nrd_elem(2) << std::endl;
+    /*first.print();
+    std::cout << first.has_cycle();*/
+    //first.print();
+    //first.clear();
+    //first.print();
 
     return 0;
 }
