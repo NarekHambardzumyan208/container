@@ -1,5 +1,6 @@
 #include <iostream>
 #include "vector.h"
+#include <set>
 using namespace std;
 template<typename type>
 void vector<type>::push_back(const type& num) {
@@ -15,9 +16,10 @@ void vector<type>::push_back(const type& num) {
 	delete[] x;
 	x = nullptr;
 };
-template<typename type>
-void vector<type>::pop_back() {
-	type* x = m_ptr;
+template<typename Type>
+void vector<Type>::pop_back()
+{
+	Type* x = m_ptr;
 	m_ptr = nullptr;
 	--m_size;
 	--m_capacity;
@@ -48,11 +50,20 @@ size_t vector<type>::capacity() {
 	return m_capacity;
 }
 template<typename type>
-//void vector<type>::reserve(int num)
-//{
-//	num = num > 600 ? 300 : num;
-//	m_capacity = num;
-//}that will be in new versions
+void vector<type>::unique() 
+{
+	set<type> temp;
+	for (int i = 0; i < m_size; i++)
+	{
+		temp.insert(at(i));
+		pop_back();
+	}
+	for (int i = 0; i < m_size; i++)
+	{
+		push_back(temp[i]);
+		temp.erase(i);
+	}
+}
 template<typename type>
 void vector<type>::insert(type var,int num) {
 	type* x = m_ptr;
@@ -72,6 +83,40 @@ void vector<type>::insert(type var,int num) {
 	}
 	delete[]  x;
 	x = nullptr;
+}
+template<typename type>
+void vector<type>::reserve(int num)
+{
+	if (m_capacity < num)
+	{
+		m_capacity = num;
+		vector<type> temp = m_ptr;
+		m_ptr = nullptr;
+		m_ptr = new type(m_capacity);
+		for (int i = 0; i < m_size; i++)
+		{
+			m_ptr[i] = temp[i];
+		}
+	}
+	else if (num > m_capacity && num > 0)
+	{
+		m_capacity = num;
+		vector<type> temp = m_ptr;
+		m_ptr = nullptr;
+		m_ptr = new type(m_capacity);
+		for (int i = 0; i < m_size; i++)
+		{
+			m_ptr[i] = temp[i];
+		}
+	}
+	else if (num == 0)
+	{
+		delete[] m_ptr;
+	}
+	else {
+		return;
+	}
+	
 }
 int main()
 {
