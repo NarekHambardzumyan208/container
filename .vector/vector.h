@@ -12,6 +12,7 @@ public:
 		delete[] m_ptr;
 		m_ptr = nullptr;
 	}
+	type& operator[](size_t index);
 	void push_back(const type& num);
 	void pop_back();
 	type at(int num);
@@ -20,5 +21,5 @@ public:
 	void reserve(int num);
 	void print();
 	void unique();
-
+    size_t size();
 };

@@ -23,7 +23,7 @@ void vector<Type>::pop_back()
 	m_ptr = nullptr;
 	--m_size;
 	--m_capacity;
-	m_ptr = new type[m_capacity];
+	m_ptr = new Type[m_capacity];
 	for (int i = 0; i < m_size; ++i)
 	{
 		m_ptr[i] = x[i];
@@ -83,6 +83,10 @@ void vector<type>::insert(type var,int num) {
 	}
 	delete[]  x;
 	x = nullptr;
+}
+template<typename type>
+type& vector<type>::operator[](size_t index) {
+	return m_ptr[index];
 }
 template<typename type>
 void vector<type>::reserve(int num)

@@ -1,6 +1,5 @@
 #include <iostream>
-#include <cstdlib> // For rand()
-
+#include <queue>
 using namespace std;
 
 struct Node {
@@ -41,27 +40,7 @@ private:
         InOrder(node->right);
     }
 
-    void printCurrentLevel(Node* root, int level) {
-        if (root == nullptr)
-            return;
-        if (level == 1)
-            cout << root->m_val << " ";
-        else if (level > 1) {
-            printCurrentLevel(root->left, level - 1);
-            printCurrentLevel(root->right, level - 1);
-        }
-    }
-
 public:
-    int height(Node* node) {
-        if (node == nullptr)
-            return 0;
-        else {
-            int lheight = height(node->left);
-            int rheight = height(node->right);
-            return (lheight > rheight) ? (lheight + 1) : (rheight + 1);
-        }
-    }
 
     void init() {
         root = new Node(rand() % 10);
@@ -74,6 +53,7 @@ public:
             if (i == 2) {
                 i = 0;
                 root->left->right = new Node(rand() % 10);
+                break;
             }
         }
         i = 0;
@@ -85,15 +65,37 @@ public:
             if (i == 2) {
                 i = 0;
                 root->right->left = new Node(rand() % 10);
+                break;
             }
         }
     }
 
-    void printLevelOrder() {
-        int h = height(root);
-        for (int i = 1; i <= h; i++) {
-            printCurrentLevel(root, i);
-        }
+    void PrintLayers()
+    {
+        queue<Node*> a;
+       
+            a.push(root->left->left);
+       
+            a.push(root->left->right);
+        
+            a.push(root->right->left);
+        
+            a.push(root->right->right);
+    
+            a.push(root->left);
+        
+            a.push(root->right);
+
+            a.push(root);
+            while (!a.empty())
+            {
+
+
+                Node* current = a.front();
+                a.pop();
+
+                std::cout << current->m_val << " ";
+            }
     }
 
     void PrintPreOrder() {
@@ -113,8 +115,8 @@ int main() {
     BinaryTree first;
     first.init();
 
-    cout << "Level Order Traversal:" << endl;
-    first.printLevelOrder();
+    cout << "Layer by Layer Traversal:" << endl;
+    first.PrintLayers();
     cout << endl;
 
     cout << "Preorder Traversal:" << endl;
