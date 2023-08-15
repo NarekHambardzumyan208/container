@@ -22,4 +22,5 @@ public:
 	void print();
 	void unique();
     size_t size();
+	void resize(size_t capacity);
 };

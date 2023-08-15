@@ -1,7 +1,6 @@
 #include <iostream>
 #include "vector.h"
 #include <set>
-using namespace std;
 template<typename type>
 void vector<type>::push_back(const type& num) {
 	type* x = m_ptr;
@@ -16,6 +15,19 @@ void vector<type>::push_back(const type& num) {
 	delete[] x;
 	x = nullptr;
 };
+template<typename Type>
+void vector<Type>::resize(size_t capacity)
+{
+	vector<Type>* temp = m_ptr;
+	m_ptr = nullptr;
+	m_ptr = new Type(capacity);
+	m_capacity = capacity;
+	for (int i = 0; i < m_size; i++)
+	{
+		m_ptr[i] = temp[i];
+	}
+	delete[] temp;
+}
 template<typename Type>
 void vector<Type>::pop_back()
 {
@@ -38,12 +50,12 @@ type vector<type>::at(int num) {
 }
 template <typename type>
 void vector<type>::print() {
-	cout << std::endl;
+	std::cout << std::endl;
 	for (int i = 0; i < m_size; i++)
 	{
-		cout << m_ptr[i] << ",";
+		std::cout << m_ptr[i] << ",";
 	}
-	cout << std::endl;
+	std::cout << std::endl;
 }
 template <typename type>
 size_t vector<type>::capacity() {
@@ -52,7 +64,7 @@ size_t vector<type>::capacity() {
 template<typename type>
 void vector<type>::unique() 
 {
-	set<type> temp;
+	std::set<type> temp;
 	for (int i = 0; i < m_size; i++)
 	{
 		temp.insert(at(i));
@@ -121,15 +133,4 @@ void vector<type>::reserve(int num)
 		return;
 	}
 	
-}
-int main()
-{
-	vector <int> a;
-	a.print();
-	a.push_back(1);
-	a.print();
-	a.push_back(2);
-	a.print();
-	a.insert(5, 2);
-	a.print();
 }
