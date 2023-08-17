@@ -1,6 +1,38 @@
 #include <iostream>
 #include "vector.h"
 #include <set>
+template<typename T>
+bool Iterator<T>::operator==(const Iterator& obj) {
+	return m_ptr == obj.m_ptr;
+}
+template<typename T>
+bool Iterator<T>::operator!=(const Iterator& obj)
+{
+	return m_ptr != obj.m_ptr;
+}
+template<typename T>
+T& Iterator<T>::operator*()
+{
+	return *m_ptr;
+}
+template<typename T>
+T* Iterator<T>::operator->()
+{
+	return m_ptr;
+}
+template<typename T>
+Iterator<T> Iterator<T>::operator++(int)
+{
+	++m_ptr;
+	return *this;
+}
+template<typename T>
+Iterator<T>& Iterator<T>::operator++()
+{
+	Iterator<T> oldIterator = *this;
+	++m_ptr;
+	return oldIterator;
+}
 template<typename type>
 void vector<type>::push_back(const type& num) {
 	type* x = m_ptr;
@@ -75,6 +107,16 @@ void vector<type>::unique()
 		push_back(temp[i]);
 		temp.erase(i);
 	}
+}
+template <typename type>
+type* begin()
+{
+	return &m_ptr[0];
+}
+template <typename type>
+type* end()
+{
+	return &m_ptr[m_size - 1];
 }
 template<typename type>
 void vector<type>::insert(type var,int num) {

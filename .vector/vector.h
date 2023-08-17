@@ -1,3 +1,19 @@
+template<typename T>
+class Iterator {
+public:
+	using pointer = T*;
+	using value_type = T;
+	using reference = T&;
+	reference operator*();
+	pointer operator ->();
+	Iterator<T>& operator++();
+	Iterator<T> operator++(int);
+	bool operator !=(const Iterator& obj);
+	bool operator == (const Iterator& obj);
+	Iterator(pointer ptr) : m_ptr(ptr) {};
+private:
+	pointer m_ptr;
+};
 template<typename type = int>
 class vector {
 protected:
@@ -13,6 +29,8 @@ public:
 		m_ptr = nullptr;
 	}
 	type& operator[](size_t index);
+	type* begin();
+	type* end();
 	void push_back(const type& num);
 	void pop_back();
 	type at(int num);
