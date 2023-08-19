@@ -109,13 +109,15 @@ void vector<type>::unique()
 	}
 }
 template <typename type>
-type* begin()
+Iterator begin()
 {
-	return &m_ptr[0];
+	Iterator temp(&m_ptr[0]);
+	return temp;
 }
 template <typename type>
-type* end()
+Iterator end()
 {
+	Iterator temp(&m_ptr[m_size - 1]);
 	return &m_ptr[m_size - 1];
 }
 template<typename type>
