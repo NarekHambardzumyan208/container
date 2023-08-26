@@ -123,6 +123,7 @@ void vector<type>::unique()
 	}
 }
 template <typename type>
+<<<<<<< HEAD
 Iterator<type> vector<type>::begin()
 {
 	return Iterator<type>(&m_ptr[0]);
@@ -131,6 +132,18 @@ template <typename type>
 Iterator<type> vector<type>::end()
 {
 	return Iterator<type>(&m_ptr[m_size - 1]);
+=======
+Iterator begin()
+{
+	Iterator temp(&m_ptr[0]);
+	return temp;
+}
+template <typename type>
+Iterator end()
+{
+	Iterator temp(&m_ptr[m_size - 1]);
+	return &m_ptr[m_size - 1];
+>>>>>>> 71928ea662102c0a4364d60241dfa6952132c59d
 }
 template<typename type>
 void vector<type>::insert(type var,int num) {
