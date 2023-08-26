@@ -1,3 +1,4 @@
+#include <cstddef>
 template<typename T>
 class Iterator {
 public:
@@ -18,8 +19,8 @@ template<typename type = int>
 class vector {
 protected:
 	type* m_ptr;
-	size_t m_size = 2;
-	size_t m_capacity = 4;
+	size_t m_size = 0;
+	size_t m_capacity = 0;
 public:
 	vector() {
 		m_ptr = new type[m_capacity];
@@ -29,8 +30,8 @@ public:
 		m_ptr = nullptr;
 	}
 	type& operator[](size_t index);
-	type* begin();
-	type* end();
+	Iterator<type> begin();
+	Iterator<type> end();
 	void push_back(const type& num);
 	void pop_back();
 	type at(int num);

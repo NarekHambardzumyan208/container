@@ -1,6 +1,12 @@
 #include <iostream>
 #include "vector.h"
+#include "C:\Users\User\source\repos\container\exception\exception_class.h"
 #include <set>
+template<typename T>
+size_t vector<T>::size()
+{
+	return size;
+}
 template<typename T>
 bool Iterator<T>::operator==(const Iterator& obj) {
 	return m_ptr == obj.m_ptr;
@@ -33,19 +39,24 @@ Iterator<T>& Iterator<T>::operator++()
 	++m_ptr;
 	return oldIterator;
 }
-template<typename type>
-void vector<type>::push_back(const type& num) {
-	type* x = m_ptr;
-	m_ptr = nullptr;
-	++m_size;
-	m_ptr = new type[m_capacity];
-	for (int i = 0; i < m_size; i++)
-	{
-		m_ptr[i] = x[i];
+template<typename T>
+void vector<T>::push_back(const T& obj) {
+	if (m_size == m_capacity) {
+		if (m_capacity == 0)
+			m_capacity = 1;
+		else
+			m_capacity = 2 * m_capacity;
+
+		T* temp = new T[m_capacity];
+		for (int i = 0; i < m_size; i++) {
+			temp[i] = m_ptr[i];
+		}
+		delete[] m_ptr;
+		m_ptr = temp;
 	}
-	m_capacity = m_size * 2;
-	delete[] x;
-	x = nullptr;
+
+	m_ptr[m_size] = obj;
+	m_size++;
 };
 template<typename Type>
 void vector<Type>::resize(size_t capacity)
@@ -77,7 +88,10 @@ void vector<Type>::pop_back()
 }
 template<typename type>
 type vector<type>::at(int num) {
-	num = num > m_size ? 0 : num;
+	if (num > m_size || num < 0)
+	{
+	throw exception("out_of_range");
+	}
 	return m_ptr[num];
 }
 template <typename type>
@@ -109,14 +123,14 @@ void vector<type>::unique()
 	}
 }
 template <typename type>
-type* begin()
+Iterator<type> vector<type>::begin()
 {
-	return &m_ptr[0];
+	return Iterator<type>(&m_ptr[0]);
 }
 template <typename type>
-type* end()
+Iterator<type> vector<type>::end()
 {
-	return &m_ptr[m_size - 1];
+	return Iterator<type>(&m_ptr[m_size - 1]);
 }
 template<typename type>
 void vector<type>::insert(type var,int num) {
