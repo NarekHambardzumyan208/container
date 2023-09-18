@@ -1,4 +1,5 @@
-#include "Array.cpp"
+#include "Array.h"
+#include <iostream>
 int main()
 {
 	  /*  Array<int> first;
